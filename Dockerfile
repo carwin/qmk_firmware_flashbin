@@ -1,5 +1,5 @@
 FROM debian:jessie
-MAINTAINER Erik Dasque <erik@frenchguys.com>
+MAINTAINER Carwin Young <carwinyoung@gmail.com>
 
 RUN apt-get update && apt-get install --no-install-recommends -y build-essential \
     gcc \
@@ -25,4 +25,5 @@ ENV keymap=default
 
 VOLUME /qmk
 WORKDIR /qmk
-CMD make clean ; make keyboard=${keyboard} subproject=${subproject} keymap=${keymap}
+# Make the keyboard and keymap as a .bin file.
+CMD make clean ; make ${keyboard}:${keymap}:flashbin
